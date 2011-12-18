@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 require 'rubygems'
+require 'sinatra'
 require 'haml'
 require 'amazonsearch'
 require 'kadailibrary'
