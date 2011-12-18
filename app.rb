@@ -5,8 +5,7 @@ require 'amazonsearch'
 require 'kadailibrary'
 use Rack::Session::Cookie,
 :expire_after => 3600,
-#:secret => Digest::SHA1.hexdigest(rand.to_s)
-:secret => "test"
+:secret => Digest::SHA1.hexdigest(rand.to_s)
 
 ENV['AMAZONRCDIR'] = './'
 ENV['AMAZONRCFILE'] = '.amazonrc'
