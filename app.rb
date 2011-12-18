@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
-require 'amazonsearch'
+require 'book'
 require 'kadailibrary'
 use Rack::Session::Cookie,
 :expire_after => 3600,
