@@ -11,5 +11,4 @@ PLATFORMS
 DEPENDENCIES
   haml
   mechanize
-  ruby-aaws
   sinatra
