@@ -2,6 +2,17 @@ require 'rubygems'
 require 'mechanize'
 require 'kconv'
 
+class Mechanize::Util
+  def self.encode_to(encoding, str)
+    if NEW_RUBY_ENCODING
+      str.encode(encoding)
+    else
+      encoding = "sjis" if encoding == "x-sjis"
+      Iconv.conv(encoding.to_s, "UTF-8", str)
+    end
+  end
+end
+
 class Kadai
 end
 

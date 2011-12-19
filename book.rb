@@ -13,7 +13,7 @@ class Book
         req = Amazon::AWS::Search::Request.new()
         is = Amazon::AWS::ItemLookup.new('ISBN', {'ItemId' => isbn, 'SearchIndex' => 'Books'})
         rg = Amazon::AWS::ResponseGroup.new(:Medium)
-        result = req.search(is, rg) rescue "not book"
+        result = req.search(is, rg)
         book = Hash.new
         result.item_lookup_response.items.item.each do |i|
           book[:isbn] = i.item_attributes.isbn.to_s
