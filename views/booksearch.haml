@@ -1,39 +1,59 @@
 %form{:method => 'get'}
+  %p
+    書籍のURL(Amazon)を入力して「検索」をクリックして下さい。
   %input{:type => 'text', :name => 'amazonurl', :size => '80', :value => @amazonurl}
-  %input{:type => 'submit', :value => 'Search'}
+  %input{:type => 'submit', :value => '検索'}
 
-- if @book and @error.nil?
-  %hr
+- if not @error.nil?
+  %p
+    %b
+      %font{:color => 'red'}
+        #{@error}
+- elsif not @book.nil?
+  %hr{:style => 'border: 1px solid #000; margin: 1em 0;'}
   %form{:method => 'post'}
     %table
       %tr
-        %td
+        %td{:style => 'padding: 1.5em 2em;', :valign => 'top'}
           %img.image{:src => @book[:image]}
         %td
           %table
             %tr
               %td
+                ISBN
+              %td
                 %input.isbn{:name => 'isbn', :value => @book[:isbn]}
             %tr
+              %td
+                書籍名
               %td
                 %input.title{:name => 'title', :value => @book[:title]}
             %tr
               %td
+                著者
+              %td
                 %input.author{:name => 'author', :value => @book[:author]}
             %tr
+              %td
+                出版社
               %td
                 %input.publisher{:name => 'publisher', :value => @book[:publisher]}
             %tr
               %td
+                出版年
+              %td
                 %input.date{:name => 'date', :value => @book[:date]}
             %tr
+              %td
+                価格
               %td
                 %input.price{:name => 'price', :value => @book[:price]}
             %tr
               %td
+                場所
+              %td
                 %input.place{:name => 'place', :value => '中央館'}
+            %tr
+              %td{:align => 'right', :colspan => '2', :style => 'padding: 0.5em 0'}
+                %input.submit{:type => 'submit'}
 
-    %input.submit{:type => 'submit'}
-
-- if @error
-  #{@error}
