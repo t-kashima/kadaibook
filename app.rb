@@ -21,10 +21,10 @@ end
 get '/' do
   @book
   @error
-  @amazonurl = params[:amazonurl] || ""
-  if not @amazonurl.empty? then
-    @book = Book.search(@amazonurl) || ""
-    if @book.empty? then
+  @amazonurl = params[:amazonurl]
+  if not @amazonurl.nil? then
+    @book = Book.search(@amazonurl)
+    if @book.nil? then
       @error = "Not a book"
     elsif Kadai::Library.search(@book[:isbn]).size > 0 then
       @error =  "This library has the book"
