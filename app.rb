@@ -21,11 +21,15 @@ end
 get '/' do
   @book
   @error
-  if @amazonurl = params[:amazonurl] then
+  @amazonurl = params[:amazonurl]
+  if not @amazonurl.nil? then
     @book = Book.search(@amazonurl)
-    @book[:date] = (@book[:date] =~ /^(\d{4})/ ? $1 : "")
-    if Kadai::Library.search(@book[:isbn]).size > 0 then
-      @error =  "Library has the book"
+    if @book.nil? then
+      @error = "Not a book"
+    elsif Kadai::Library.search(@book[:isbn]).size > 0 then
+      @error =  "This library has the book"
+    else
+      @book[:date] = (@book[:date] =~ /^(\d{4})/ ? $1 : "")
     end
   end
   haml :booksearch
